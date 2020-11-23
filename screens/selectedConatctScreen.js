@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { View, Text, StyleSheet, TouchableOpacity, Modal,FlatList } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Modal,FlatList,Linking } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
 import { loadPaymentDetails } from '../store/actions/data-action';
 
@@ -17,6 +17,21 @@ const SelectedContactScreen = props => {
     const record = useSelector(state => state.data.record)
     // console.log("record",record)
     const selectedUserData = data.filter(item => item.userid == userid)
+    const contacts = useSelector(state => state.contacts.contacts)
+    console.log(selectedUserData)
+    //const selectedContact = contacts.filter(item => item.id == userid)
+    //console.log(selectedContact)
+    //console.log(selectedUserData[0]["advance"]);
+    //console.log(selectedUserData[0]["borrow"]);
+
+    let advance=0,borrow=0
+
+    if (selectedUserData.length !== 0){
+        advance = selectedUserData[0]["advance"];
+        borrow = selectedUserData[0]["borrow"];
+    }
+    
+    
 
 
     const loadPaymentDetails1 = useCallback(() => {
@@ -29,6 +44,18 @@ const SelectedContactScreen = props => {
 
     const handleShowModal = () => {
         setShowModal(true)
+    }
+
+    const handleReminder = () => {
+        let url = `whatsapp://send?text= Payement of ₹${borrow - advance} is due. Please send as soon as possible.`
+        Linking.openURL(url)
+          .then(data => {
+            console.log("WhatsApp Opened successfully " + data);
+          })
+          .catch(() => {
+            alert("Make sure WhatsApp installed on your device");
+          });
+
     }
 
     const handleCloseModal = () => {
@@ -85,6 +112,7 @@ const SelectedContactScreen = props => {
             </View>
 
             <View style={styles.addAmountButtonContainer}>
+              
                 <TouchableOpacity
                     style={styles.button1}
                     onPress={handleShowModal}
@@ -92,8 +120,24 @@ const SelectedContactScreen = props => {
                     <Text>
                         Add Amount
                 </Text>
+                    
                 </TouchableOpacity>
+                { 
+                    (borrow > advance) ?  
+                        <TouchableOpacity
+                        style={styles.button1}
+                        onPress={handleReminder}
+                        >
+                            <Text>
+                                Reminder
+                            </Text>
+                    
+                        </TouchableOpacity> : null
+                }
+
             </View>
+            
+
 
             {
                     showModal &&

@@ -15,7 +15,7 @@ export const addBorrowPaymnet = (userid,name,amount,amountType,date) =>{
             //      h
 
             try{
-                                const dbResult = await insertPayment(userid,name,amount,amountType,date); 
+                const dbResult = await insertPayment(userid,name,amount,amountType,date); 
                 if (dbResult.insertId === undefined){
                     dispatch({
                         type:UPDATE_PAYMENT,

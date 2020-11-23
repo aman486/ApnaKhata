@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^10.2.1",
+    "@react-native-community/datetimepicker": "^3.0.0",
     "@react-native-community/masked-view": "0.1.10",
     "expo": "~39.0.2",
     "expo-camera": "~9.0.0",
@@ -22,7 +23,6 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
     "react-native-contacts": "^5.2.8",
     "react-native-datepicker": "^1.7.2",
-    
     "react-native-gesture-handler": "~1.7.0",
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.4",
@@ -33,8 +33,7 @@
     "react-navigation-stack": "^2.8.4",
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "@react-native-community/datetimepicker": "3.0.0"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

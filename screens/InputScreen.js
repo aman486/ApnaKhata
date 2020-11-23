@@ -10,7 +10,7 @@ import * as PaymentActions from '../store/actions/data-action';
 
 const InputScreen = props =>{
     const [amount,setAmount] = useState();
-    const [date,setDate] = useState(new Date().toLocaleDateString().slice(0,10))
+    const [date,setDate] = useState(new Date().toUTCString().slice(0,16))
     const [isLoading,setIsLoading] = useState(false);
     const [showDatePicker,setShowDatePicker] = useState(false)
     const {userid,name} = props
@@ -26,9 +26,11 @@ const InputScreen = props =>{
     }
 
     const savePlaceHandler =async (amountType) =>{
-        setIsLoading(true)
+        //setIsLoading(true)
+    
         await dispatch(PaymentActions.addBorrowPaymnet(userid,name,amount,amountType,date))
-        setIsLoading(false);
+        
+        //setIsLoading(false);
         props.closeModal()        
     }
 

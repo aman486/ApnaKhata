@@ -24,7 +24,7 @@ const Layout = ()=>{
             // Contacts.
 
             if (data.length > 0) {
-            //console.log(data);
+                // console.log(data);
                 dispatch(addContacts(data))
             }
         }

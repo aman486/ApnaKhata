@@ -4,13 +4,17 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { View,StyleSheet } from 'react-native';
 
 const DatePick = props => {
-    const [date, setDate] = useState(new Date(1598051730000))
+    const currDate = new Date()
+    //  console.log(currDate);
+
+    const [date, setDate] = useState(currDate)
 
     const onChange = (date)=>{
         props.closeDatePicker()
         if(date.type!=="dismissed"){
             const _timedate = new Date(date.nativeEvent.timestamp)
-            const _date =  _timedate.toLocaleDateString().slice(0,10) 
+            const _date = _timedate.toUTCString().slice(0,25)
+            // const _date =  _timedate.toLocaleDateString().slice(0,10) 
             props.handleDateChange(_date)
         }
     }
